@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+html{
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    margin: 0;
+    background-color: #6B728E;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+main{
+    width: 100%;
+    height: 94%;
+}
+
+header{
+    background-color: #50577A;
+    height: 6%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.calorie-count-container{
+    text-align: center;
+}
+
+#calorie-count{
+    font-size: 3em;
+    margin: 10%;
+}
+
+.main-btn{
+    width: 25%;
+    height: 3em;
+    border-radius: 0.5em;
+    border: none;
+    background-color: #50577A;
+}
+
+.button-container{
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.button-container *{
+    margin: 2% 2%;
+}
+
+.entries-list{
+    margin: 6% auto 6% auto;
+    background-color: white;
+    width: 75%;
+    height: 40%;
+    overflow: scroll;
+    padding: 1em;
+    font-size: large;
+    overflow-x: hidden;
+}
+
+.orange{
+    background-color: rgb(192, 143, 37);
+}
+
+.orange:hover, .orange:active{
+    background-color: rgb(153, 114, 29);
+}
+
+.blue:hover, .blue:active{
+    background-color: #3f4461;
+}
