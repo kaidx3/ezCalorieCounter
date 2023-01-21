@@ -85,3 +85,12 @@ h1{
 .blue:hover{
     background-color: #3f4461;
 }
+
+@media (hover: none) {
+    .blue{
+        background-color: #50577A;
+    }
+    .orange{
+        background-color: rgb(192, 143, 37);
+    }
+}
