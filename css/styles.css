@@ -44,6 +44,7 @@ h1{
 }
 
 .main-btn{
+    font-size: medium;
     width: 25%;
     height: 3em;
     border-radius: 0.5em;
@@ -70,16 +71,17 @@ h1{
     padding: 1em;
     font-size: large;
     overflow-x: hidden;
+    border-radius: 1em;
 }
 
 .orange{
     background-color: rgb(192, 143, 37);
 }
 
-.orange:hover, .orange:active{
+.orange:hover{
     background-color: rgb(153, 114, 29);
 }
 
-.blue:hover, .blue:active{
+.blue:hover{
     background-color: #3f4461;
 }
