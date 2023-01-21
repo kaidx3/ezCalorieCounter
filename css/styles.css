@@ -3,20 +3,17 @@
 html{
     font-family: 'Roboto', sans-serif;
     margin: 0;
-    width: 100%;
     height: 100%;
 }
 
 body{
     margin: 0;
     background-color: #6B728E;
-    height: 100%;
-    width: 100%;
     overflow: hidden;
+    height: 100%;
 }
 
 main{
-    width: 100%;
     height: 94%;
 }
 
@@ -27,25 +24,25 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 10%;
 }
 
 h1{
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 0;
 }
 
 .calorie-count-container{
     text-align: center;
+    margin-bottom: 10%;
 }
 
 #calorie-count{
     font-size: 3em;
-    margin: 10%;
 }
 
 .main-btn{
     font-size: medium;
-    width: 25%;
+    width: 22%;
     height: 3em;
     border-radius: 0.5em;
     border: none;
@@ -56,6 +53,7 @@ h1{
     align-items: center;
     text-align: center;
     justify-content: center;
+
 }
 
 .button-container *{
@@ -63,15 +61,48 @@ h1{
 }
 
 .entries-list{
+    height: 40%;
     margin: 6% auto 6% auto;
     background-color: white;
     width: 75%;
-    height: 40%;
-    overflow: scroll;
     padding: 1em;
     font-size: large;
-    overflow-x: hidden;
     border-radius: 1em;
+}
+
+.list-titles{
+    font-size: larger;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.entry-lists{
+    height: 86%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 4%;
+}
+
+.list-btns{
+    display: flex;
+    justify-content: space-around;
+}
+
+.title-container{
+    width: 50%;
+    justify-content: left;
+    padding-left: 2em;
+    padding-right: 2em;
+    margin-bottom: 6%;
+}
+
+.entries-list-child{
+    width: 50%;
+    justify-content: left;
+    padding-left: 2em;
+    padding-right: 2em;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .orange{
