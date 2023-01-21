@@ -77,20 +77,3 @@ h1{
 .orange{
     background-color: rgb(192, 143, 37);
 }
-
-.orange:hover{
-    background-color: rgb(153, 114, 29);
-}
-
-.blue:hover{
-    background-color: #3f4461;
-}
-
-@media (hover: none) {
-    .blue{
-        background-color: #50577A;
-    }
-    .orange{
-        background-color: rgb(192, 143, 37);
-    }
-}

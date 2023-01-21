@@ -22,7 +22,7 @@ window.addEventListener("onbeforeunload", () => {
 
 addCalorieBtn.addEventListener("click", () => {
     let calorieEntry = getValidNumber("Please enter the ammount of calories", "Must be a number")
-    if (calorieEntry >= 0){
+    if (calorieEntry > 0){
         caloriesList.push(calorieEntry)
         updateAllDisplaysAndSave()
     }
