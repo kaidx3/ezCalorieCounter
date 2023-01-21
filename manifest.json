@@ -1,0 +1,14 @@
+{
+    "name": "ezCalorieCounter",
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#6B728E",
+    "icons": [
+        {
+            "src": "./img/kcal-logo",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any maskable"
+        }
+    ]
+}
