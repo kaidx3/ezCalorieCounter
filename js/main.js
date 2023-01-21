@@ -1,20 +1,31 @@
+//variables
 let addCalorieBtn = document.querySelector("#add-calories-btn")
 let removeEntryBtn = document.querySelector("#remove-entry-btn")
 let clearBtn = document.querySelector("#clear-btn")
 let caloriesListContainer = document.querySelector(".entries-list")
 let calorieCounter = document.querySelector("#calorie-count")
-let entriesCount = 1;
-let totalCalories = 0;
-
+let entriesCount = 1
+let totalCalories = 0
 let caloriesList = []
+
+//event listeners
+window.addEventListener("load", () => {
+    if (localStorage.getItem("caloriesList") != null && localStorage.getItem("entriesCount") != null){
+        loadData()
+        updateAllDisplays()
+    }
+})
+
+window.addEventListener("onbeforeunload", () => {
+    saveData()
+})
 
 addCalorieBtn.addEventListener("click", () => {
     let calorieEntry = getValidNumber("Please enter the ammount of calories", "Must be a number")
-    if (calorieEntry != 0){
+    if (calorieEntry >= 0){
         caloriesList.push(calorieEntry)
-        updateListDisplay()
+        updateAllDisplaysAndSave()
     }
-    updateCalorieCounter()
 })
 
 removeEntryBtn.addEventListener("click", () => {
@@ -25,22 +36,21 @@ removeEntryBtn.addEventListener("click", () => {
         }
         if (index >= 0 && index <= caloriesList.length - 1){
             caloriesList.splice(index, 1)
-            updateListDisplay()
+            updateAllDisplaysAndSave()
         }
-        updateCalorieCounter()
     }
 })
 
 clearBtn.addEventListener("click", () => {
     caloriesList = []
-    updateListDisplay()
-    updateCalorieCounter()
+    updateAllDisplaysAndSave()
 })
 
+
+//functions
 const updateListDisplay = () => {
     caloriesListContainer.innerHTML = ""
     entriesCount = 1
-
     caloriesList.forEach(entry => {
         caloriesListContainer.innerHTML += `${entriesCount}. ${entry}<br>`
         entriesCount ++
@@ -49,6 +59,7 @@ const updateListDisplay = () => {
 
 const updateCalorieCounter = () => {
     totalCalories = 0
+
     caloriesList.forEach(entry => {
         totalCalories += parseInt(entry)
     })
@@ -58,13 +69,32 @@ const updateCalorieCounter = () => {
 
 const getValidNumber = (promptText, errorText) => {
     let number = prompt(promptText)
-
     while (isNaN(number)){
         number = prompt(errorText)
     }
-
     if (number == null){
         return 0
     }
     return number
+}
+
+const saveData = () => {
+    localStorage.setItem("caloriesList", JSON.stringify(caloriesList))
+    localStorage.setItem("entriesCount", JSON.stringify(entriesCount))
+}
+
+const loadData = () => {
+    caloriesList = JSON.parse(localStorage.getItem("caloriesList"))
+    entriesCount = JSON.parse(localStorage.getItem("entriesCount"))
+}
+
+const updateAllDisplaysAndSave = () => {
+    updateCalorieCounter()
+    updateListDisplay()
+    saveData()
+}
+
+const updateAllDisplays = () => {
+    updateCalorieCounter()
+    updateListDisplay()
 }
