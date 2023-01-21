@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="manifest" href="./manifest.json">
     <script defer src="./js/main.js"></script>
-    <script defer src="./service-worker.js"></script>
-    <script defer src="./js/pwa-handler.js"></script>
 </head>
 <body>
     <header>
@@ -39,5 +37,11 @@
             <button class="main-btn blue" id="view-timeline-btn">View<br>Timeline</button>
         </section>
     </main>
+
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("./service-worker.js")
+        }
+    </script>
 </body>
 </html>

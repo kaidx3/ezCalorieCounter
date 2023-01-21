@@ -1,37 +1,6 @@
-// Name of the Cache.
-const CACHE = "cacheV1";
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.4.1/workbox-sw.js')
 
-// Select files for caching.
-let urlsToCache = [
-    "/",
-    "/index.html",
-    "/img",
-    "/img/kcal-logo.jpg",
-    "/css", 
-    "/css/styles.css",
-    "/js",
-    "/js/main.js", 
-    "/js/pwa-handler.js"
-];
-
-// Cache all the selected items once application is installed.
-self.addEventListener("install", (event) => {
-    event.waitUntil(
-        caches.open(CACHE).then((cache) => {
-            console.log("Caching started.");
-            return cache.addAll(urlsToCache);
-        })
-    );
-});
-
-// Whenever a resource is requested, return if its cached else fetch the resourcefrom server.
-self.addEventListener("fetch", (event) => {
-    event.respondWith(
-        caches.match(event.request).then((response) => {
-            if (response) {
-                return response;
-            }
-            return fetch(event.request);
-        })
-    );
-});
+workbox.routing.registerRoute(
+    ({request}) => request.destination === 'image',
+    new workbox.strategies.NetworkFirst()
+)
