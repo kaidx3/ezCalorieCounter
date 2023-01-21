@@ -25,6 +25,8 @@ header{
     justify-content: center;
     align-items: center;
     margin-bottom: 10%;
+    font-size: larger;
+    font-weight: bold;
 }
 
 h1{
