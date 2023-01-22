@@ -94,11 +94,11 @@ h1{
     font-size: larger;
     display: flex;
     justify-content: space-evenly;
-    margin-bottom: 6%;
+    margin-bottom: 10%;
 }
 
 .entry-lists{
-    height: 82%;
+    height: 80%;
     display: flex;
     padding-left: 10%;
     margin-bottom: 4%;
