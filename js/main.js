@@ -144,7 +144,7 @@ const removeEntry = (list) => {
 }
 
 const pushToList = (list) => {
-    let entry = getValidNumber("Please enter the ammount of calories", "Must be a number")
+    let entry = getValidNumber("Please enter the amount of calories", "Must be a number")
     if (entry > 0){
         list.push(entry)
         updateAllDisplaysAndSave()
