@@ -2,7 +2,7 @@
     "name": "ezCalorieCounter",
     "start_url": "/",
     "display": "standalone",
-    "theme_color": "#50577A",
+    "theme_color": "#282828",
     "icons": [
         {
             "src": "./img/kcal-logo.jpg",

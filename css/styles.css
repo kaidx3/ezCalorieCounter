@@ -85,33 +85,14 @@ h1{
     font-size: larger;
     display: flex;
     justify-content: space-evenly;
-}
-
-.entry-lists{
-    height: 86%;
-    display: flex;
-    justify-content: space-evenly;
-    margin-bottom: 4%;
-}
-
-.list-btns{
-    display: flex;
-    justify-content: space-around;
-}
-
-.title-container{
-    width: 50%;
-    justify-content: left;
-    padding-left: 2em;
-    padding-right: 2em;
     margin-bottom: 6%;
 }
 
-.entries-list-child{
-    width: 50%;
-    justify-content: left;
-    padding-left: 2em;
-    padding-right: 2em;
+.entry-lists{
+    height: 82%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 4%;
     overflow-x: hidden;
     overflow-y: scroll;
 }

@@ -3,6 +3,8 @@ let addBtn = document.querySelector("#add-btn")
 let removeBtn = document.querySelector("#remove-btn")
 let submitBtn = document.querySelector("#submit-btn")
 
+let listTitle = document.querySelector("#list-title")
+
 let dayBtn = document.querySelector("#day-btn")
 let timelineBtn = document.querySelector("#timeline-btn")
 
@@ -107,6 +109,17 @@ const updateBtns = () => {
     }
 }
 
+const updateListTitle = () => {
+    switch (selectedPage){
+        case buttons.Day:
+            listTitle.innerHTML = "Today's Calories"
+            break;
+        case buttons.Timeline:
+            listTitle.innerHTML = "Calories Timeline"
+            break;
+    }
+}
+
 const getValidNumber = (promptText, errorText) => {
     let number = prompt(promptText)
     while (isNaN(number)){
@@ -160,6 +173,7 @@ const updateAllDisplays = () => {
     }
     updateBtns()
     updateCalorieCounter()
+    updateListTitle()
 }
 
 const updateAllDisplaysAndSave = () => {
