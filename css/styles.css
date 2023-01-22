@@ -14,6 +14,10 @@ body{
     color: white;
 }
 
+p{
+    margin: 0px;
+}
+
 main{
     height: 94%;
 }
@@ -44,11 +48,12 @@ h1{
 }
 
 .main-btn{
+    vertical-align: top;
     color: white;
     font-size: medium;
     width: 22%;
-    height: 3em;
-    border-radius: 0.5em;
+    height: 3rem;
+    border-radius: 0.5rem;
     border: none;
     background-color: #282828;
     -webkit-touch-callout: none; /* iOS Safari */
@@ -61,6 +66,8 @@ h1{
 }
 
 .button-container{
+    vertical-align: top;
+    line-height: 0px;
     align-items: center;
     text-align: center;
     justify-content: center;
@@ -68,6 +75,8 @@ h1{
 }
 
 .button-container *{
+    align-items: center;
+    justify-content: center;
     margin: 2% 2%;
 }
 
@@ -103,4 +112,8 @@ h1{
 
 .selected-btn{
    background-color: #4e4e4e !important; 
+}
+
+.large-btn-text{
+    font-size: x-large;
 }
