@@ -1,12 +1,20 @@
 //variables
-let addCalorieBtn = document.querySelector("#add-calories-btn")
-let removeEntryBtn = document.querySelector("#remove-day-entry-btn")
-let removeDayBtn = document.querySelector("#remove-timeline-entry-btn")
-let clearBtn = document.querySelector("#clear-btn")
-let caloriesListContainerDay = document.querySelector("#day-list")
-let caloriesListContainerTimeline = document.querySelector("#timeline-list")
+let addBtn = document.querySelector("#add-btn")
+let removeBtn = document.querySelector("#remove-btn")
+let submitBtn = document.querySelector("#submit-btn")
+
+let dayBtn = document.querySelector("#day-btn")
+let timelineBtn = document.querySelector("#timeline-btn")
+
+let entriesList = document.querySelector("#entries")
 let calorieCounter = document.querySelector("#calorie-count")
-let submitDayBtn = document.querySelector("#submit-day-btn")
+
+const buttons = {
+    Day: 0,
+    Timeline: 1,
+  };
+
+let selectedPage = buttons.Day;
 let entriesCount = 1
 let entriesCountTimeline = 1
 let totalCalories = 0
@@ -25,30 +33,40 @@ window.addEventListener("onbeforeunload", () => {
     saveData()
 })
 
-addCalorieBtn.addEventListener("click", () => {
-    let calorieEntry = getValidNumber("Please enter the ammount of calories", "Must be a number")
-    if (calorieEntry > 0){
-        caloriesList.push(calorieEntry)
-        updateAllDisplaysAndSave()
+dayBtn.addEventListener("click", () => {
+    selectedPage = buttons.Day
+    updateAllDisplaysAndSave()
+})
+
+timelineBtn.addEventListener("click", () => {
+    selectedPage = buttons.Timeline
+    updateAllDisplaysAndSave()
+})
+
+addBtn.addEventListener("click", () => {
+    switch(selectedPage){
+        case buttons.Day:
+            pushToList(caloriesList)
+            break;
+        case buttons.Timeline:
+            pushToList(caloriesTimeline)
+            break;
     }
 })
 
-removeEntryBtn.addEventListener("click", () => {
-    removeEntry(caloriesList)
+removeBtn.addEventListener("click", () => {
+    switch(selectedPage){
+        case buttons.Day:
+            removeEntry(caloriesList)
+            break;
+        case buttons.Timeline:
+            removeEntry(caloriesTimeline)
+            break;
+    }
     updateAllDisplaysAndSave()
 })
 
-removeDayBtn.addEventListener("click", () => {
-    removeEntry(caloriesTimeline)
-    updateAllDisplaysAndSave()
-})
-
-clearBtn.addEventListener("click", () => {
-    caloriesList = []
-    updateAllDisplaysAndSave()
-})
-
-submitDayBtn.addEventListener("click", () => {
+submitBtn.addEventListener("click", () => {
     caloriesTimeline.push(totalCalories)
     totalCalories = 0
     caloriesList = []
@@ -74,6 +92,21 @@ const updateCalorieCounter = () => {
     calorieCounter.innerText = totalCalories
 }
 
+const updateBtns = () => {
+    switch (selectedPage){
+        case buttons.Day:
+            dayBtn.classList.add("selected-btn")
+            timelineBtn.classList.remove("selected-btn")
+            submitBtn.innerText = "Submit"
+            break;
+        case buttons.Timeline:
+            timelineBtn.classList.add("selected-btn")
+            dayBtn.classList.remove("selected-btn")
+            submitBtn.innerText = "Graph"
+            break;
+    }
+}
+
 const getValidNumber = (promptText, errorText) => {
     let number = prompt(promptText)
     while (isNaN(number)){
@@ -97,6 +130,14 @@ const removeEntry = (list) => {
     }
 }
 
+const pushToList = (list) => {
+    let entry = getValidNumber("Please enter the ammount of calories", "Must be a number")
+    if (entry > 0){
+        list.push(entry)
+        updateAllDisplaysAndSave()
+    }
+}
+
 const saveData = () => {
     localStorage.setItem("caloriesList", JSON.stringify(caloriesList))
     localStorage.setItem("entriesCount", JSON.stringify(entriesCount))
@@ -109,15 +150,19 @@ const loadData = () => {
     caloriesTimeline = JSON.parse(localStorage.getItem("caloriesTimeline"))
 }
 
-const updateAllDisplaysAndSave = () => {
+const updateAllDisplays = () => {
+    switch (selectedPage){
+        case buttons.Day:
+            updateListDisplay(entriesList, caloriesList)
+            break;
+        case buttons.Timeline:
+            updateListDisplay(entriesList, caloriesTimeline)
+    }
+    updateBtns()
     updateCalorieCounter()
-    updateListDisplay(caloriesListContainerDay, caloriesList)
-    updateListDisplay(caloriesListContainerTimeline, caloriesTimeline)
-    saveData()
 }
 
-const updateAllDisplays = () => {
-    updateCalorieCounter()
-    updateListDisplay(caloriesListContainerDay, caloriesList)
-    updateListDisplay(caloriesListContainerTimeline, caloriesTimeline)
+const updateAllDisplaysAndSave = () => {
+    updateAllDisplays()
+    saveData()
 }

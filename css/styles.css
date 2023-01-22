@@ -119,3 +119,7 @@ h1{
 .blue-highlight{
     background-color: rgb(0, 92, 158);
 }
+
+.selected-btn{
+   background-color: #4e4e4e !important; 
+}
