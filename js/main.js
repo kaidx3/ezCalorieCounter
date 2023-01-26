@@ -107,7 +107,7 @@ const removeChart = () => {
 const createChart = () => {
     entriesList.style.display = "none"
     let labels = []
-    for (i = 1; i < caloriesTimeline.length; i++){
+    for (i = 1; i <= caloriesTimeline.length; i++){
         labels.push(i)
     }
     timelineChart.style.display = "initial"
