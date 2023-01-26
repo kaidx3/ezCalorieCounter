@@ -18,6 +18,7 @@ const buttons = {
 
 let graphActive = false
 let timelineChart = document.querySelector("#timeline-graph")
+let canvasContainer = document.querySelector(".canvas-container")
 
 let selectedPage = buttons.Day
 let entriesCount = 1
@@ -98,6 +99,7 @@ submitBtn.addEventListener("click", () => {
 
 //functions
 const removeChart = () => {
+    canvasContainer.style.display = "none"
     entriesList.style.display = "flex"
     lineChart.destroy()
     timelineChart.style.display = "none"
@@ -110,6 +112,7 @@ const createChart = () => {
     for (i = 1; i <= caloriesTimeline.length; i++){
         labels.push(i)
     }
+    canvasContainer.style.display = "block"
     timelineChart.style.display = "initial"
     lineChart = new Chart(timelineChart, {
         type: 'line',
@@ -124,6 +127,7 @@ const createChart = () => {
             }],
         },
         options: {
+            maintainAspectRatio: false,
             plugins: {
                 legend: {
                     display: false
