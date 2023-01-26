@@ -14,9 +14,12 @@ let calorieCounter = document.querySelector("#calorie-count")
 const buttons = {
     Day: 0,
     Timeline: 1,
-  };
+};
 
-let selectedPage = buttons.Day;
+let graphActive = false
+let timelineChart = document.querySelector("#timeline-graph")
+
+let selectedPage = buttons.Day
 let entriesCount = 1
 let entriesCountTimeline = 1
 let totalCalories = 0
@@ -37,6 +40,9 @@ window.addEventListener("onbeforeunload", () => {
 
 dayBtn.addEventListener("click", () => {
     selectedPage = buttons.Day
+    if (graphActive){
+        removeChart()
+    }
     updateAllDisplaysAndSave()
 })
 
@@ -49,10 +55,10 @@ addBtn.addEventListener("click", () => {
     switch(selectedPage){
         case buttons.Day:
             pushToList(caloriesList)
-            break;
+            break
         case buttons.Timeline:
             pushToList(caloriesTimeline)
-            break;
+            break
     }
 })
 
@@ -63,20 +69,71 @@ removeBtn.addEventListener("click", () => {
             break;
         case buttons.Timeline:
             removeEntry(caloriesTimeline)
-            break;
+            break
     }
     updateAllDisplaysAndSave()
 })
 
 submitBtn.addEventListener("click", () => {
-    caloriesTimeline.push(totalCalories)
-    totalCalories = 0
-    caloriesList = []
-    updateAllDisplaysAndSave()
+    switch (selectedPage){
+        case buttons.Day:
+            caloriesTimeline.push(totalCalories)
+            totalCalories = 0
+            caloriesList = []
+            updateAllDisplaysAndSave()
+            break
+        case buttons.Timeline:
+            if (graphActive == false){
+                submitBtn.innerText = "Timeline"
+                createChart()
+            }
+            else{
+                submitBtn.innerText = "Graph"
+                removeChart()
+            }
+            break
+    }
 })
 
 
 //functions
+const removeChart = () => {
+    entriesList.style.display = "flex"
+    lineChart.destroy()
+    timelineChart.style.display = "none"
+    graphActive = false
+}
+
+const createChart = () => {
+    entriesList.style.display = "none"
+    let labels = []
+    for (i = 1; i < caloriesTimeline.length; i++){
+        labels.push(i)
+    }
+    timelineChart.style.display = "initial"
+    lineChart = new Chart(timelineChart, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Timeline",
+                data: caloriesTimeline,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }],
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    })
+    graphActive = true
+}
+
 const updateListDisplay = (display, list) => {
     display.innerHTML = ""
     entriesCount = 1
